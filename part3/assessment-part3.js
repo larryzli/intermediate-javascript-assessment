@@ -14,8 +14,7 @@
 
 // CODE HERE...
 function callBinding(magicAnimals, updateAnimal, id) {
-    let targetAnimalIndex = magicAnimals.findIndex(el => el.id === id);
-    let targetAnimal = magicAnimals[targetAnimalIndex];
+    let targetAnimal = magicAnimals.filter(el => el.id === id)[0];
     return updateAnimal.call(targetAnimal, "Trogdor");
 }
 
@@ -32,9 +31,7 @@ function callBinding(magicAnimals, updateAnimal, id) {
 
 // CODE HERE...
 function applyBinding(magicAnimals, updateAnimal, id) {
-    let targetAnimalIndex = magicAnimals.findIndex(el => el.id === id);
-    let targetAnimal = magicAnimals[targetAnimalIndex];
-
+    let targetAnimal = magicAnimals.filter(el => el.id === id)[0];
     return updateAnimal.apply(targetAnimal, [
         "being majestic",
         "eating rainbows"
@@ -84,9 +81,7 @@ function emailList($q, $http) {
     let emails = [];
     return new Promise(resolve =>
         $http.get("/api/users").then(response => {
-            for (let i in response.data) {
-                emails.push(response.data[i].email);
-            }
+            emails = response.data.map(el => el.email);
             resolve(emails);
         })
     );
