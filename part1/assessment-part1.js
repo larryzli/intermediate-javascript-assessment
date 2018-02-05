@@ -115,18 +115,11 @@ mustang.drive();
 // CODE HERE...
 String.prototype.grammarPolice = function() {
     let strArr = this.split(" ");
-    let result = [];
     for (let i in strArr) {
-        for (let j = 0; j < strArr[i].length; j++) {
-            if (j === 0) {
-                result.push(strArr[i][j].toUpperCase());
-            } else {
-                result.push(strArr[i][j].toLowerCase());
-            }
-        }
-        result.push(" ");
+        strArr[i] = strArr[i].toLowerCase();
+        strArr[i] = strArr[i].charAt(0).toUpperCase() + strArr[i].slice(1);
     }
-    return result.join("").trim();
+    return strArr.join(" ");
 };
 
 // *************
